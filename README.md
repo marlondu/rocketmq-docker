@@ -4,6 +4,8 @@
 
 ## Usage
 
+#### Step One:
+
 ```sh
 $ git clone git@github.com:marlondu/rocketmq-docker.git
 $ cd rocketmq-docker
@@ -14,3 +16,8 @@ $ # or run with docker-compose
 $ docker-compose up
 ```
 
+#### Step Two:
+
+add `127.0.0.1 rmq-broker` in your hosts file
+
+then use command `ping rmq-broker`  in console to verify if work.
