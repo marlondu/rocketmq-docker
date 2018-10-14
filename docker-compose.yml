@@ -1,12 +1,25 @@
 version: '3.3'
 
 services:
+  
+  # Usage:
+  # 1. Build Image
+  #   remove rmq-base's comment and `docker-compose build`
+  # 2. Start container
+  #   add rmq-base's comment and `docker-compose up`
+
+  # rmq-base:
+  #   image: rocketmq-base:4.3.1
+  #   build:
+  #     context: ./rmq-base
+  #     args:
+  #       RMQ_VERSION: 4.3.1
+    
+
   rmq-namesrv:
+    image: rocketmq-namesrv
     build: 
       context: ./rmq-namesrv
-      args:
-        RMQ_VERSION: 4.3.1
-      # network_mode: host
     networks: 
       - rmq-net
     ports:
@@ -19,10 +32,9 @@ services:
       - ROCKETMQ_HOME=/root
 
   rmq-broker:
+    image: rocketmq-broker
     build: 
       context: ./rmq-broker
-      args:
-        RMQ_VERSION: 4.3.1
     # network_mode: host
     networks: 
       - rmq-net
@@ -37,6 +49,7 @@ services:
       - Xms=512m
       - Xmn=128m
       - ROCKETMQ_HOME=/root
+
   rmq-console:
     image: styletang/rocketmq-console-ng:latest
     ports:
